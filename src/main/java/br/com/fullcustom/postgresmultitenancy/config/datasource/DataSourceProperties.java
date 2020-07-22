@@ -5,32 +5,33 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-// @Component
-// @ConfigurationProperties(prefix = "tenants")
-// public class DataSourceProperties {
+@Component
+@ConfigurationProperties(prefix = "tenants")
+public class DataSourceProperties {
 
-//     private Map<Object, Object> datasources = new LinkedHashMap<>();
+    private Map<Object, Object> datasources = new LinkedHashMap<>();
 
-//     public Map<Object, Object> getDatasources() {
-//         return datasources;
-//     }
+    public Map<Object, Object> getDatasources() {
+        return datasources;
+    }
 
-//     public void setDatasources(Map<String, Map<String, String>> datasources) {
-//         datasources.forEach((key, value) -> this.datasources.put(key, convert(value)));
-//     }
+    public void setDatasources(Map<String, Map<String, String>> datasources) {
+        datasources.forEach((key, value) -> this.datasources.put(key, convert(value)));
+    }
+    
+    public DataSource convert(Map<String, String> source) {
 
-//     public DataSource convert(Map<String, String> source) {
+        System.out.println("Creating Datasource by properties: " + source);
 
-//         System.out.println(source);
-
-//         return DataSourceBuilder.create()
-//         .url(source.get("jdbcUrl"))
-//         .driverClassName(source.get("driverClassName"))
-//         .username(source.get("username"))
-//         .password(source.get("password"))
-//         .build();
-//     }
-// }
+        return DataSourceBuilder.create()
+            .url(source.get("jdbcUrl"))
+            .driverClassName(source.get("driverClassName"))            
+            .username(source.get("username"))
+            .password(source.get("password"))            
+            .build();
+    }
+}

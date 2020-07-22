@@ -10,7 +10,7 @@ public class ThreadTenantStorage {
     }
 
     public static String getTenantId() {
-        System.out.println("Request by tenant: " + currentTenant.get());
+        System.out.println("Request tenant: " + currentTenant.get());
         return currentTenant.get();
     }
 

@@ -8,6 +8,7 @@ public class TenantRoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
+        System.out.println("Getting tenantId by currentLookupKey: "+ThreadTenantStorage.getTenantId());
         return ThreadTenantStorage.getTenantId();
     }
 }

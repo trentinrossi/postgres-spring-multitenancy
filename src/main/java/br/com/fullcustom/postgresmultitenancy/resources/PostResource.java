@@ -2,8 +2,6 @@ package br.com.fullcustom.postgresmultitenancy.resources;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +14,6 @@ import br.com.fullcustom.postgresmultitenancy.domain.Post;
 import br.com.fullcustom.postgresmultitenancy.services.PostService;
 
 @RestController
-@Transactional
 @RequestMapping(value = "/posts")
 public class PostResource {
 
