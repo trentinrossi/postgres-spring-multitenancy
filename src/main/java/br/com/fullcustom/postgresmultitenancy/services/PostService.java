@@ -17,8 +17,8 @@ public class PostService {
     private PostRepository repo;
 
     public Post findById(Long id) {
-        Optional<Post> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+        var obj = repo.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nÃ£o encontrado"));
     }
 
     public List<Post> findAll() {

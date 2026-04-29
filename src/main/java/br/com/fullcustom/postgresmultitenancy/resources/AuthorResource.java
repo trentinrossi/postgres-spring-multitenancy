@@ -28,20 +28,20 @@ public class AuthorResource {
 
     @GetMapping
     public ResponseEntity<List<Author>> findAll() {
-        List<Author> list = service.findAll();
+        var list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Author> findById(@PathVariable Long id) {
-        Author obj = service.findById(id);
+        var obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody Author obj) {
         obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
@@ -60,7 +60,7 @@ public class AuthorResource {
 
     @GetMapping(path = "/{id}/posts")
     public ResponseEntity<List<Post>> findPosts(@PathVariable Long id) {
-        Author obj = service.findById(id);
+        var obj = service.findById(id);
         return ResponseEntity.ok().body(obj.getPosts());
     }
 }

@@ -21,8 +21,8 @@ public class AuthorService {
     }
 
     public Author findById(Long id) {
-        Optional<Author> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+        var obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nÃ£o encontrado"));
     }
 
     public Author insert(Author obj) {
@@ -35,7 +35,7 @@ public class AuthorService {
     }
 
     public Author update(Author obj) {
-        Author newObj = findById(obj.getId());
+        var newObj = findById(obj.getId());
         updateData(newObj, obj);
         return repository.save(newObj);
     }
@@ -44,5 +44,4 @@ public class AuthorService {
         newObj.setName(obj.getName());
         newObj.setEmail(obj.getEmail());
     }
-
 }
