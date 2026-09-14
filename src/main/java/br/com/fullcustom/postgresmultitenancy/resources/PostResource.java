@@ -17,19 +17,19 @@ import br.com.fullcustom.postgresmultitenancy.services.PostService;
 @RequestMapping(value = "/posts")
 public class PostResource {
 
-    @Autowired
-    private PostService service;
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Post> findById(@PathVariable Long id) {
-        Post obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Post>> findAll(@RequestHeader(name = "X-tenant") String tenant) {
-        System.out.println("Tenant: "+tenant);
-        List<Post> obj = service.findAll();
-        return ResponseEntity.ok().body(obj);
-    }
+	@Autowired
+	private PostService service;
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Post> findById(@PathVariable Long id) {
+		var obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Post>> findAll(@RequestHeader(name = "X-tenant") String tenant) {
+		System.out.println("Tenant: " + tenant);
+		var obj = service.findAll();
+		return ResponseEntity.ok().body(obj);
+	}
 }

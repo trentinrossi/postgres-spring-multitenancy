@@ -7,5 +7,5 @@ import br.com.fullcustom.postgresmultitenancy.domain.Post;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-
+    
 }
