@@ -1,28 +1,25 @@
-package br.com.fullcustom.postgresmultitenancy.config.web;
+package br.com.fullcustom.postgresmultitenancy.config.web
 
-import org.springframework.stereotype.Component;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.context.request.WebRequestInterceptor;
+import org.springframework.stereotype.Component
+import org.springframework.ui.ModelMap
+import org.springframework.web.context.request.WebRequest
+import org.springframework.web.context.request.WebRequestInterceptor
 
-@Component
-public class HeaderTenantInterceptor implements WebRequestInterceptor {
+Component
+public class HeaderTenantInterceptor implements WebRequestInterceptor 
 
-    public static final String TENANT_HEADER = "X-tenant";
+public static final String TENANTHEADER  Xtenant
 
-    @Override
-    public void preHandle(WebRequest request) throws Exception {
-        System.out.println("Interceptor in action: "+request.getHeader(TENANT_HEADER));
-        ThreadTenantStorage.setTenantId(request.getHeader(TENANT_HEADER));
-    }
+Override
+public void preHandleWebRequest request throws Exception 
+System.out.printlnInterceptor in action request.getHeaderTENANTHEADER
+ThreadTenantStorage.setTenantIdrequest.getHeaderTENANTHEADER
 
-    @Override
-    public void postHandle(WebRequest request, ModelMap model) throws Exception {
-        ThreadTenantStorage.clear();
-    }
 
-    @Override
-    public void afterCompletion(WebRequest request, Exception ex) throws Exception {
+Override
+public void postHandleWebRequest request, ModelMap model throws Exception 
+ThreadTenantStorage.clear
 
-    }
-}
+
+Override
+public void afterCompletionWebRequest request, Exception ex throws Exception

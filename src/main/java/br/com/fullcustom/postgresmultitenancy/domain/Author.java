@@ -5,105 +5,106 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Author implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String email;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Post> posts = new ArrayList<>();
+	private String name;
 
-    public Author() {
-    }
+	private String email;
 
-    public Author(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
+	@JsonBackReference
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+	private List<Post> posts = new ArrayList<>();
 
-    public Long getId() {
-        return this.id;
-    }
+	public Author() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Author(Long id, String name, String email) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public Long getId() {
+		return this.id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getEmail() {
-        return this.email;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Author id(Long id) {
-        this.id = id;
-        return this;
-    }
+	public String getEmail() {
+		return this.email;
+	}
 
-    public Author name(String name) {
-        this.name = name;
-        return this;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Author email(String email) {
-        this.email = email;
-        return this;
-    }
+	public Author id(Long id) {
+		this.id = id;
+		return this;
+	}
 
-    public List<Post> getPosts() {
-        return posts;
-    }
+	public Author name(String name) {
+		this.name = name;
+		return this;
+	}
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
+	public Author email(String email) {
+		this.email = email;
+		return this;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Author)) {
-            return false;
-        }
-        Author user = (Author) o;
-        return Objects.equals(id, user.id);
-    }
+	public List<Post> getPosts() {
+		return posts;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 
-    @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", email='" + getEmail() + "'" + "}";
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		if (!(o instanceof Author user)) {
+			return false;
+		}
+		return Objects.equals(id, user.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(id);
+	}
+
+	@Override
+	public String toString() {
+		return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", email='" + getEmail() + "'" + "}";
+	}
 
 }
