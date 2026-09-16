@@ -1,37 +1,32 @@
-package br.com.fullcustom.postgresmultitenancy.config.datasource;
+package br.com.fullcustom.postgresmultitenancy.config.datasource
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.jdbc.DataSourceBuilder
+import org.springframework.stereotype.Component
 
-import javax.sql.DataSource;
+import javax.sql.DataSource
+import java.util.LinkedHashMap
+import java.util.Map
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+Component
+ConfigurationPropertiesprefix  tenants
+public class DataSourceProperties 
 
-@Component
-@ConfigurationProperties(prefix = "tenants")
-public class DataSourceProperties {
+private MapObject, Object datasources  new LinkedHashMap
 
-    private Map<Object, Object> datasources = new LinkedHashMap<>();
+public MapObject, Object getDatasources 
+return datasources
 
-    public Map<Object, Object> getDatasources() {
-        return datasources;
-    }
 
-    public void setDatasources(Map<String, Map<String, String>> datasources) {
-        datasources.forEach((key, value) -> this.datasources.put(key, convert(value)));
-    }
-    
-    public DataSource convert(Map<String, String> source) {
+public void setDatasourcesMapString, MapString, String datasources 
+datasources.forEachkey, value  this.datasources.putkey, convertvalue
 
-        System.out.println("Creating Datasource by properties: " + source);
 
-        return DataSourceBuilder.create()
-            .url(source.get("jdbcUrl"))
-            .driverClassName(source.get("driverClassName"))            
-            .username(source.get("username"))
-            .password(source.get("password"))            
-            .build();
-    }
-}
+public DataSource convertMapString, String source 
+System.out.printlnCreating Datasource by properties   source
+return DataSourceBuilder.create
+.urlsource.getjdbcUrl
+.driverClassNamesource.getdriverClassName
+.usernamesource.getusername
+.passwordsource.getpassword
+.build

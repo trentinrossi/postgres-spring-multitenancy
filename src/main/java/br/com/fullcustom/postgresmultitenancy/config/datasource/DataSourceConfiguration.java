@@ -4,7 +4,7 @@ import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Configuration
@@ -16,12 +16,12 @@ public class DataSourceConfiguration {
         this.dataSourceProperties = dataSourceProperties;
     }
 
-    @Bean    
+    @Bean
     public DataSource dataSource() {
-        TenantRoutingDataSource customDataSource = new TenantRoutingDataSource();
-        customDataSource.setTargetDataSources(dataSourceProperties.getDatasources());        
+        var customDataSource = new TenantRoutingDataSource();
+        customDataSource.setTargetDataSources(dataSourceProperties.getDatasources());
         customDataSource.setDefaultTargetDataSource(dataSourceProperties.getDatasources().get("default"));
-        System.out.println("Bean setting Target DataSource: " + dataSourceProperties.getDatasources());
+        System.out.println("Bean setting Target DataSource : " + dataSourceProperties.getDatasources());
         return customDataSource;
     }
 
@@ -36,8 +36,7 @@ public class DataSourceConfiguration {
     }
 
     private void migrate(DataSource dataSource) {
-        Flyway flyway = Flyway.configure().dataSource(dataSource).load();
+        var flyway = Flyway.configure().dataSource(dataSource).load();
         flyway.migrate();
     }
-    
 }
