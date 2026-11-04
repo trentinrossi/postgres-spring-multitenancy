@@ -12,7 +12,7 @@ public class HeaderTenantInterceptor implements WebRequestInterceptor {
 
     @Override
     public void preHandle(WebRequest request) throws Exception {
-        System.out.println("Interceptor in action: "+request.getHeader(TENANT_HEADER));
+        System.out.println("Interceptor in action " + request.getHeader(TENANT_HEADER));
         ThreadTenantStorage.setTenantId(request.getHeader(TENANT_HEADER));
     }
 
@@ -25,4 +25,5 @@ public class HeaderTenantInterceptor implements WebRequestInterceptor {
     public void afterCompletion(WebRequest request, Exception ex) throws Exception {
 
     }
+
 }

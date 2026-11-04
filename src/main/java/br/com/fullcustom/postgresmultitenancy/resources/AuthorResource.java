@@ -1,66 +1,64 @@
-package br.com.fullcustom.postgresmultitenancy.resources;
+package br.com.fullcustom.postgresmultitenancy.resources
 
-import java.net.URI;
-import java.util.List;
+import java.net.URI
+import java.util.List
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
-import br.com.fullcustom.postgresmultitenancy.domain.Author;
-import br.com.fullcustom.postgresmultitenancy.domain.Post;
-import br.com.fullcustom.postgresmultitenancy.services.AuthorService;
+import br.com.fullcustom.postgresmultitenancy.domain.Author
+import br.com.fullcustom.postgresmultitenancy.domain.Post
+import br.com.fullcustom.postgresmultitenancy.services.AuthorService
 
-@RestController
-@RequestMapping(value = "/authors")
-public class AuthorResource {
+RestController
+RequestMappingvalue  authors
+public class AuthorResource 
 
-    @Autowired
-    private AuthorService service;
+Autowired
+private AuthorService service
 
-    @GetMapping
-    public ResponseEntity<List<Author>> findAll() {
-        List<Author> list = service.findAll();
-        return ResponseEntity.ok().body(list);
-    }
+GetMapping
+public ResponseEntityListAuthor findAll 
+ListAuthor list  service.findAll
+return ResponseEntity.ok.bodylist
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<Author> findById(@PathVariable Long id) {
-        Author obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
-    }
 
-    @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Author obj) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
-    }
+GetMappingpath  id
+public ResponseEntityAuthor findByIdPathVariable Long id 
+Author obj  service.findByIdid
+return ResponseEntity.ok.bodyobj
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<Void> update(@RequestBody Author obj, @PathVariable Long id) {
-        obj.setId(id);
-        obj = service.update(obj);
-        return ResponseEntity.noContent().build();
-    }
+PostMapping
+public ResponseEntityVoid insertRequestBody Author obj 
+obj  service.insertobj
+URI uri  ServletUriComponentsBuilder.fromCurrentRequest.pathid.buildAndExpandobj.getId.toUri
+return ResponseEntity.createduri.build
 
-    @GetMapping(path = "/{id}/posts")
-    public ResponseEntity<List<Post>> findPosts(@PathVariable Long id) {
-        Author obj = service.findById(id);
-        return ResponseEntity.ok().body(obj.getPosts());
-    }
-}
+
+DeleteMappingpath  id
+public ResponseEntityVoid deletePathVariable Long id 
+service.deleteid
+return ResponseEntity.noContent.build
+
+
+PutMappingpath  id
+public ResponseEntityVoid updateRequestBody Author obj, PathVariable Long id 
+obj.setIdid
+obj  service.updateobj
+return ResponseEntity.noContent.build
+
+
+GetMappingpath  idposts
+public ResponseEntityListPost findPostsPathVariable Long id 
+Author obj  service.findByIdid
+return ResponseEntity.ok.bodyobj.getPosts

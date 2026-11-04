@@ -13,15 +13,15 @@ import br.com.fullcustom.postgresmultitenancy.services.exceptions.ObjectNotFound
 @Service
 public class PostService {
 
-    @Autowired
-    private PostRepository repo;
-
-    public Post findById(Long id) {
-        Optional<Post> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
-    }
-
-    public List<Post> findAll() {
-        return repo.findAll();
-    }
+	@Autowired
+	private PostRepository repo;
+	
+	public Post findById(Long id) {
+		var obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nÃ£o encontrado"));
+	}
+	
+	public List<Post> findAll() {
+		return repo.findAll();
+	}
 }
