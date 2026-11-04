@@ -5,12 +5,12 @@ public class ThreadTenantStorage {
     private static ThreadLocal<String> currentTenant = new ThreadLocal<>();
 
     public static void setTenantId(String tenantId) {
-        System.out.println("Setting tenant id: " + tenantId);
+        System.out.println("Setting tenant id " + tenantId);
         currentTenant.set(tenantId);
     }
 
     public static String getTenantId() {
-        System.out.println("Request tenant: " + currentTenant.get());
+        System.out.println("Request tenant " + currentTenant.get());
         return currentTenant.get();
     }
 

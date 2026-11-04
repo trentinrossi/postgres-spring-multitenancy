@@ -23,44 +23,44 @@ import br.com.fullcustom.postgresmultitenancy.services.AuthorService;
 @RequestMapping(value = "/authors")
 public class AuthorResource {
 
-    @Autowired
-    private AuthorService service;
+	@Autowired
+	private AuthorService service;
 
-    @GetMapping
-    public ResponseEntity<List<Author>> findAll() {
-        List<Author> list = service.findAll();
-        return ResponseEntity.ok().body(list);
-    }
+	@GetMapping
+	public ResponseEntity<List<Author>> findAll() {
+		var list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<Author> findById(@PathVariable Long id) {
-        Author obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
-    }
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Author> findById(@PathVariable Long id) {
+		var obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
 
-    @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Author obj) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
-    }
+	@PostMapping
+	public ResponseEntity<Void> insert(@RequestBody Author obj) {
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<Void> update(@RequestBody Author obj, @PathVariable Long id) {
-        obj.setId(id);
-        obj = service.update(obj);
-        return ResponseEntity.noContent().build();
-    }
+	@PutMapping(path = "/{id}")
+	public ResponseEntity<Void> update(@RequestBody Author obj, @PathVariable Long id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 
-    @GetMapping(path = "/{id}/posts")
-    public ResponseEntity<List<Post>> findPosts(@PathVariable Long id) {
-        Author obj = service.findById(id);
-        return ResponseEntity.ok().body(obj.getPosts());
-    }
+	@GetMapping(path = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable Long id) {
+		var obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
+	}
 }
